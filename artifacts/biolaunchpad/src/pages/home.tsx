@@ -41,7 +41,7 @@ function Hero() {
               Biolaunchpad partners with healthcare professionals to turn <Mark>first-hand problems</Mark> into products that improve patient care.
             </p>
             <p className="mt-5 text-lg leading-relaxed text-[#0f2a1d]/75">
-              You notice the problems in care before anyone else does. We are the hands-on partner that helps turn that insight into a real product, from first assessment to prototype to launch.
+              Your experience with patients can be the starting point for a better medical device or healthcare tool. We bring the development support to move your idea forward, while you stay involved in the work that inspired it.
             </p>
           </Reveal>
           <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
@@ -145,11 +145,11 @@ function Who() {
 }
 
 function Partnership() {
-  const rows = [
-    ['You receive a quote and a delivery date.', 'We work through the problem with you, side by side.'],
-    ['You hand over a brief.', 'Your clinical judgement shapes every decision.'],
-    ['The work ends at handover.', 'We stay with the idea from assessment through to launch.'],
-    ['Your role is customer.', 'Your role is co-creator.'],
+  const benefits = [
+    { title: 'Make the complexity manageable.', text: 'Medical hardware takes more than a good design. Engineering, repeated prototypes, testing and manufacturing all add cost and uncertainty. We help you assess the idea, plan development in stages and bring the right expertise together before committing to the next step.' },
+    { title: 'Plan for evidence and regulation early.', text: 'A working prototype is not yet a product ready for patients. We help identify the testing, clinical evidence and regulatory requirements your product may need, and coordinate specialist support. Approval depends on the product, its evidence and the relevant authorities.' },
+    { title: 'Build without leaving your practice behind.', text: 'Healthcare professionals often have the most practical ideas, but cannot put their entire practice on hold to develop them. We take on the coordination of product development while you contribute clinical judgement, feedback and time at agreed stages.' },
+    { title: 'Keep real care at the centre.', text: 'Your practice is an advantage. It helps us understand real workflows, refine the product and build relationships that can support clinical studies and market adoption. Any patient research or trials still require the appropriate ethics review, consent and approvals.' },
   ];
   return (
     <section id="partnership" className="py-24 md:py-36">
@@ -157,20 +157,20 @@ function Partnership() {
         <Reveal><Label>02 / What partnership means</Label></Reveal>
         <Reveal delay={0.1}>
           <h2 className="font-display mt-6 text-5xl md:text-[5.5rem] leading-[0.96] tracking-[-0.035em] max-w-5xl">
-            We do not build <span className="line-through decoration-[#e2603a] decoration-[3px]">for</span> you. We build it <em className="text-[#1d6b3a] font-[340]">with</em> you.
+            Your clinical insight. <em className="text-[#1d6b3a] font-[340]">Our shared work.</em>
           </h2>
         </Reveal>
-        <div className="mt-16 md:mt-24 rounded-[28px] md:rounded-[36px] border border-[#0f2a1d]/15 overflow-hidden bg-[#faf6ec]">
-          <div className="grid grid-cols-2 font-mono text-[11px] uppercase tracking-[0.2em]">
-            <div className="p-5 md:p-8 text-[#0f2a1d]/50 border-r border-[#0f2a1d]/10">A typical development agency</div>
-            <div className="p-5 md:p-8 bg-[#0f2a1d] text-[#5be36f]">Biolaunchpad</div>
-          </div>
-          {rows.map(([a, b], i) => (
-            <Reveal key={i} delay={i * 0.06}>
-              <div className="grid grid-cols-2 border-t border-[#0f2a1d]/10" data-testid={`row-compare-${i}`}>
-                <p className="p-5 md:p-8 text-base md:text-xl text-[#0f2a1d]/50 border-r border-[#0f2a1d]/10">{a}</p>
-                <p className="p-5 md:p-8 text-base md:text-xl font-display bg-[#0f2a1d] text-[#f4efe3]">{b}</p>
-              </div>
+        <Reveal delay={0.15}>
+          <p className="mt-8 max-w-3xl text-lg md:text-xl leading-relaxed text-[#0f2a1d]/75">The people closest to patients often know what needs to change. Turning that knowledge into a medtech product takes time, capital and expertise across several disciplines. Biolaunchpad brings those parts together with you, so you do not have to navigate the process alone.</p>
+        </Reveal>
+        <div className="mt-12 md:mt-16 grid md:grid-cols-2 gap-5">
+          {benefits.map((benefit, i) => (
+            <Reveal key={benefit.title} delay={i * 0.06} className="h-full">
+              <article className="h-full rounded-[28px] border border-[#0f2a1d]/15 bg-[#faf6ec] p-7 md:p-10" data-testid={`partnership-benefit-${i}`}>
+                <span className="font-mono text-xs tracking-[0.2em] text-[#1d6b3a]">0{i + 1}</span>
+                <h3 className="mt-6 font-display text-3xl md:text-4xl leading-tight text-[#0f2a1d]">{benefit.title}</h3>
+                <p className="mt-5 text-base md:text-lg leading-relaxed text-[#0f2a1d]/75">{benefit.text}</p>
+              </article>
             </Reveal>
           ))}
         </div>
