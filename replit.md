@@ -1,6 +1,6 @@
-# [Project name]
+# BioLaunchpad
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A public website explaining BioLaunchpad's partnership with healthcare professionals to turn clinical ideas into healthtech products.
 
 ## Run & Operate
 
@@ -34,7 +34,10 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+- Do not use em dashes in website content.
+- Rewrite content for simple, clear understanding, not merely a visual refresh.
+- Use the supplied BioLaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.
+- The existing live website must remain untouched while the replacement is developed here.
 
 ## Gotchas
 

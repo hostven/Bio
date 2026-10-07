@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "BioLaunchpad"
+description = "A redesigned BioLaunchpad website explaining how doctors and healthcare professionals partner to build healthtech products."
+version = "1.0.0"
+id = "artifacts/biolaunchpad"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20227
+
+[services.development]
+run = "pnpm --filter @workspace/biolaunchpad run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/biolaunchpad", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/biolaunchpad/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20227"
+BASE_PATH = "/"
