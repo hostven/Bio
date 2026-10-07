@@ -72,8 +72,8 @@ function Nav() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled || open ? 'bg-[#f4efe3]/90 backdrop-blur-md border-b border-[#0f2a1d]/10' : ''}`}>
       <div className="mx-auto flex max-w-[1320px] items-center justify-between px-5 md:px-10 h-[72px]">
-        <a href="#top" data-testid="link-logo" aria-label="BioLaunchpad home" className="block">
-          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="BioLaunchpad" className="h-6 md:h-7 w-auto" />
+        <a href="#top" data-testid="link-logo" aria-label="Biolaunchpad home" className="block">
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Biolaunchpad" className="h-6 md:h-7 w-auto" />
         </a>
         <nav className="hidden lg:flex items-center gap-8 text-sm text-[#0f2a1d]/80" aria-label="Primary">
           {NAV.map((n) => (
@@ -151,7 +151,7 @@ function Hero() {
         <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
           <Reveal className="md:col-span-6 lg:col-span-5" delay={0.3}>
             <p className="text-lg md:text-xl leading-relaxed text-[#0f2a1d]/80">
-              You notice the problems in clinical practice before anyone else does. BioLaunchpad is the hands-on partner that helps you turn that insight into a real product, from first assessment to prototype to launch.
+              You notice the problems in clinical practice before anyone else does. Biolaunchpad is the hands-on partner that helps you turn that insight into a real product, from first assessment to prototype to launch.
             </p>
           </Reveal>
           <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
@@ -257,7 +257,7 @@ function Partnership() {
         <div className="mt-16 md:mt-24 rounded-[28px] md:rounded-[36px] border border-[#0f2a1d]/15 overflow-hidden bg-[#faf6ec]">
           <div className="grid grid-cols-2 font-mono text-[11px] uppercase tracking-[0.2em]">
             <div className="p-5 md:p-8 text-[#0f2a1d]/50 border-r border-[#0f2a1d]/10">A typical development agency</div>
-            <div className="p-5 md:p-8 bg-[#0f2a1d] text-[#5be36f]">BioLaunchpad</div>
+            <div className="p-5 md:p-8 bg-[#0f2a1d] text-[#5be36f]">Biolaunchpad</div>
           </div>
           {rows.map(([a, b], i) => (
             <Reveal key={i} delay={i * 0.06}>
@@ -495,7 +495,7 @@ function Footer() {
     <footer className="mx-auto max-w-[1320px] px-5 md:px-10 py-14">
       <div className="grid md:grid-cols-12 gap-10">
         <div className="md:col-span-5">
-          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="BioLaunchpad" className="h-7 w-auto" />
+          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Biolaunchpad" className="h-7 w-auto" />
           <p className="mt-5 text-[#0f2a1d]/65 max-w-sm">The hands-on partner for doctors and healthcare professionals turning clinical problems into real products.</p>
         </div>
         <div className="md:col-span-3">
@@ -512,7 +512,7 @@ function Footer() {
         </div>
       </div>
       <div className="mt-14 pt-6 border-t border-[#0f2a1d]/10 flex flex-col sm:flex-row justify-between gap-2 text-sm text-[#0f2a1d]/50">
-        <p>&copy; {new Date().getFullYear()} BioLaunchpad. Pune, India.</p>
+        <p>&copy; {new Date().getFullYear()} Biolaunchpad. Pune, India.</p>
         <a href="#top" className="hover:text-[#0f2a1d]" data-testid="link-back-top">Back to top</a>
       </div>
     </footer>

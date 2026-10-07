@@ -1,6 +1,6 @@
-# BioLaunchpad
+# Biolaunchpad
 
-A public website explaining BioLaunchpad's partnership with healthcare professionals to turn clinical ideas into healthtech products.
+A public website explaining Biolaunchpad's partnership with healthcare professionals to turn clinical ideas into healthtech products.
 
 ## Run & Operate
 
@@ -36,7 +36,8 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 
 - Do not use em dashes in website content.
 - Rewrite content for simple, clear understanding, not merely a visual refresh.
-- Use the supplied BioLaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.
+- Always spell the brand name "Biolaunchpad", with a lowercase l, everywhere going forward.
+- Use the supplied Biolaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.
 - The existing live website must remain untouched while the replacement is developed here.
 
 ## Gotchas
