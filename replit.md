@@ -37,6 +37,8 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 - Do not use em dashes in website content.
 - Rewrite content for simple, clear understanding, not merely a visual refresh.
 - Always spell the brand name "Biolaunchpad", with a lowercase l, everywhere going forward.
+- The user loves the forest-green and ivory redesign: preserve that direction when extending the site.
+- Explicitly include technicians, healthcare helpers, and anyone working directly with patients. Their first-hand understanding of real problems matters alongside clinical qualifications.
 - Use the supplied Biolaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.
 - The existing live website must remain untouched while the replacement is developed here.
 

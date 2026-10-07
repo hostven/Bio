@@ -1,123 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useRef, useState } from 'react';
+import { Link } from 'wouter';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowUpRight, Menu, X, Mail, MapPin, Plus, Minus } from 'lucide-react';
-
-const APPLY = 'https://biolaunchpad.com/apply-now';
-const MAIL = 'mailto:biolaunchpad@gmail.com';
-const MAIL_PARTNER = 'mailto:biolaunchpad@gmail.com?subject=Partnership%20enquiry';
-const MAIL_INVEST = 'mailto:biolaunchpad@gmail.com?subject=Investor%20enquiry';
-
-const NAV = [
-  { href: '#who', label: 'Who it is for' },
-  { href: '#partnership', label: 'Partnership' },
-  { href: '#journey', label: 'The journey' },
-  { href: '#focus', label: 'Focus areas' },
-  { href: '#questions', label: 'Questions' },
-];
-
-function Reveal({ children, delay = 0, className = '' }: { children: ReactNode; delay?: number; className?: string }) {
-  const reduce = useReducedMotion();
-  return (
-    <motion.div
-      className={className}
-      initial={reduce ? false : { opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function Label({ children, light = false }: { children: ReactNode; light?: boolean }) {
-  return (
-    <div className={`font-mono text-[11px] uppercase tracking-[0.22em] flex items-center gap-3 ${light ? 'text-[#5be36f]' : 'text-[#1d6b3a]'}`}>
-      <span className={`h-px w-8 ${light ? 'bg-[#5be36f]' : 'bg-[#1d6b3a]'}`} />
-      {children}
-    </div>
-  );
-}
-
-function PrimaryCTA({ children, href = APPLY, testid }: { children: ReactNode; href?: string; testid: string }) {
-  return (
-    <a
-      href={href}
-      data-testid={testid}
-      className="group inline-flex items-center gap-3 rounded-full bg-[#5be36f] pl-6 pr-2 py-2 text-[#0f2a1d] font-semibold transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1d6b3a]"
-    >
-      {children}
-      <span className="grid h-10 w-10 place-items-center rounded-full bg-[#0f2a1d] text-[#5be36f] transition-transform duration-300 group-hover:rotate-45">
-        <ArrowUpRight className="h-4 w-4" />
-      </span>
-    </a>
-  );
-}
-
-function Nav() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 24);
-    f();
-    window.addEventListener('scroll', f, { passive: true });
-    return () => window.removeEventListener('scroll', f);
-  }, []);
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    const k = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
-    window.addEventListener('keydown', k);
-    return () => window.removeEventListener('keydown', k);
-  }, [open]);
-  return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${scrolled || open ? 'bg-[#f4efe3]/90 backdrop-blur-md border-b border-[#0f2a1d]/10' : ''}`}>
-      <div className="mx-auto flex max-w-[1320px] items-center justify-between px-5 md:px-10 h-[72px]">
-        <a href="#top" data-testid="link-logo" aria-label="Biolaunchpad home" className="block">
-          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Biolaunchpad" className="h-6 md:h-7 w-auto" />
-        </a>
-        <nav className="hidden lg:flex items-center gap-8 text-sm text-[#0f2a1d]/80" aria-label="Primary">
-          {NAV.map((n) => (
-            <a key={n.href} href={n.href} data-testid={`link-nav-${n.href.slice(1)}`} className="relative hover:text-[#0f2a1d] after:absolute after:left-0 after:-bottom-1 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-[#1d6b3a] after:transition-transform hover:after:scale-x-100">
-              {n.label}
-            </a>
-          ))}
-        </nav>
-        <div className="flex items-center gap-3">
-          <a href={APPLY} data-testid="link-nav-apply" className="hidden sm:inline-flex rounded-full bg-[#0f2a1d] px-5 py-2.5 text-sm font-semibold text-[#f4efe3] hover:bg-[#1d6b3a] transition-colors">
-            Apply now
-          </a>
-          <button
-            type="button"
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            data-testid="button-menu"
-            className="lg:hidden grid h-11 w-11 place-items-center rounded-full border border-[#0f2a1d]/20 text-[#0f2a1d]"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-      {open && (
-        <div id="mobile-menu" className="lg:hidden min-h-[calc(100dvh-72px)] bg-[#f4efe3] px-5 pt-6 pb-10 flex flex-col">
-          <nav className="flex flex-col" aria-label="Mobile">
-            {NAV.map((n, i) => (
-              <a key={n.href} href={n.href} onClick={() => setOpen(false)} data-testid={`link-mobile-${n.href.slice(1)}`} className="font-display text-4xl py-3 border-b border-[#0f2a1d]/10 flex items-baseline gap-4">
-                <span className="font-mono text-xs text-[#1d6b3a]">0{i + 1}</span>
-                {n.label}
-              </a>
-            ))}
-          </nav>
-          <div className="mt-auto pt-10 flex flex-col gap-4">
-            <PrimaryCTA testid="link-mobile-apply">Apply with your idea</PrimaryCTA>
-            <a href={MAIL} className="text-sm text-[#0f2a1d]/70" data-testid="link-mobile-email">biolaunchpad@gmail.com</a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
+import { ArrowUpRight, Plus, Minus } from 'lucide-react';
+import { Reveal, Label, PrimaryCTA, Mark } from '@/components/brand';
+import { MAIL_INVEST, MAIL_PARTNER } from '@/lib/site';
+import { useSeo } from '@/lib/seo';
 
 function Hero() {
   const reduce = useReducedMotion();
@@ -130,7 +17,7 @@ function Hero() {
     <section id="top" ref={ref} className="relative pt-[120px] md:pt-[150px] pb-16 md:pb-24 overflow-hidden">
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
         <motion.div initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Label>For doctors and healthcare professionals in India</Label>
+          <Label>For everyone who works directly with patients</Label>
           <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[#0f2a1d]/60">
             <span className="relative h-2 w-2"><span className="absolute inset-0 rounded-full bg-[#5be36f] anim-pulse" /><span className="absolute inset-0 rounded-full bg-[#2fb24a]" /></span>
             Pune, India
@@ -150,15 +37,18 @@ function Hero() {
         </h1>
         <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
           <Reveal className="md:col-span-6 lg:col-span-5" delay={0.3}>
-            <p className="text-lg md:text-xl leading-relaxed text-[#0f2a1d]/80">
-              You notice the problems in clinical practice before anyone else does. Biolaunchpad is the hands-on partner that helps you turn that insight into a real product, from first assessment to prototype to launch.
+            <p className="font-display text-2xl md:text-[1.9rem] leading-[1.25] tracking-[-0.01em] text-[#0f2a1d]" data-testid="text-definition">
+              Biolaunchpad partners with healthcare professionals to turn <Mark>first-hand problems</Mark> into products that improve patient care.
+            </p>
+            <p className="mt-5 text-lg leading-relaxed text-[#0f2a1d]/75">
+              You notice the problems in care before anyone else does. We are the hands-on partner that helps turn that insight into a real product, from first assessment to prototype to launch.
             </p>
           </Reveal>
           <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
             <PrimaryCTA testid="link-hero-apply">Apply with your idea</PrimaryCTA>
-            <a href="#journey" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
+            <Link href="/how-it-works" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
               See how it works
-            </a>
+            </Link>
           </Reveal>
         </div>
       </div>
@@ -195,11 +85,13 @@ function Marquee() {
 }
 
 const WHO = [
-  { t: 'Practising doctors', d: 'You keep running into the same gap on rounds, in the OT or in OPD, and you have a hunch about how to fix it.' },
-  { t: 'Surgeons and specialists', d: 'You have modified a tool, improvised a workaround or sketched a better instrument. That is where devices begin.' },
-  { t: 'Nurses, therapists and allied professionals', d: 'You see the daily friction of care up close. Your view of the problem is just as valuable.' },
-  { t: 'Clinician researchers', d: 'You have a finding or a concept that deserves to leave the paper and reach patients.' },
+  { t: 'Doctors and surgeons', tag: 'OPD / OT / wards', d: <>You keep meeting <Mark light>the same gap</Mark> on rounds or in theatre, or you have already improvised a workaround. That is where devices begin.</> },
+  { t: 'Nurses and healthcare helpers', tag: 'Bedside / night shift', d: <>You see the <Mark light>daily friction of care</Mark> closer than anyone: the lift that strains a back, the alarm nobody can hear.</> },
+  { t: 'Therapists and technicians', tag: 'Rehab / lab / OT', d: <>Physio, occupational and speech therapists, OT and lab technicians. You know <Mark light>which tools fail</Mark>, and exactly how.</> },
+  { t: 'Researchers and everyone else', tag: 'Any field', d: <>Clinician researchers with a finding that should <Mark light>leave the paper</Mark>, and engineers, students or founders with a strong healthtech idea. You are welcome too.</> },
 ];
+
+const ROLES_LINE = ['doctors', 'surgeons', 'nurses', 'therapists', 'technicians', 'healthcare helpers'];
 
 function Who() {
   return (
@@ -215,8 +107,19 @@ function Who() {
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <p className="mt-8 text-lg text-[#f4efe3]/70 max-w-md leading-relaxed">
-              You do not need a business plan, a technical team or a finished design. You need a real clinical problem and the will to see it solved.
+            <p className="mt-8 text-lg text-[#f4efe3]/80 max-w-md leading-relaxed">
+              If you work directly with patients, you already know the real problems first-hand. You do not need a business plan, a technical team or a finished design.
+            </p>
+            <p className="mt-6 max-w-md text-[1.35rem] leading-[1.5]" aria-label={`For ${ROLES_LINE.join(', ')} and anyone who works with patients.`}>
+              <span aria-hidden>
+                {ROLES_LINE.map((r, i) => (
+                  <span key={r}>
+                    <span className={i % 2 ? 'font-display italic text-[#5be36f]' : 'font-display text-[#f4efe3]'}>{r}</span>
+                    <span className="font-mono text-xs text-[#f4efe3]/40 mx-2 align-middle">/</span>
+                  </span>
+                ))}
+                <span className="font-display italic text-[#f4efe3]/70">anyone at the bedside.</span>
+              </span>
             </p>
           </Reveal>
         </div>
@@ -226,8 +129,11 @@ function Who() {
               <div className="group border-t border-[#f4efe3]/15 py-8 md:py-10 grid grid-cols-[auto_1fr] gap-6 md:gap-10" data-testid={`card-who-${i}`}>
                 <span className="font-mono text-sm text-[#5be36f] pt-2">0{i + 1}</span>
                 <div>
-                  <h3 className="font-display text-3xl md:text-4xl transition-transform duration-500 group-hover:translate-x-2">{w.t}</h3>
-                  <p className="mt-3 text-[#f4efe3]/65 text-lg leading-relaxed max-w-lg">{w.d}</p>
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                    <h3 className="font-display text-3xl md:text-4xl transition-transform duration-500 group-hover:translate-x-2">{w.t}</h3>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#f4efe3]/45">{w.tag}</span>
+                  </div>
+                  <p className="mt-4 font-display italic font-[340] text-xl md:text-[1.55rem] leading-[1.4] text-[#f4efe3]/85 max-w-lg">{w.d}</p>
                 </div>
               </div>
             </Reveal>
@@ -405,7 +311,7 @@ function Bring() {
         <Reveal delay={0.2}>
           <div className="mt-12 flex flex-col sm:flex-row sm:items-center gap-6">
             <PrimaryCTA testid="link-bring-apply">Start your application</PrimaryCTA>
-            <p className="text-[#f4efe3]/60 max-w-sm">The application opens on biolaunchpad.com. Start by telling us about the healthcare problem you want to solve.</p>
+            <p className="text-[#f4efe3]/60 max-w-sm">About ten minutes. It prepares an email draft in your own email app, and nothing is sent until you press send.</p>
           </div>
         </Reveal>
       </div>
@@ -417,7 +323,8 @@ const FAQ = [
   { q: 'Do I need a technical background?', a: 'No. You bring the clinical problem and the insight. Turning it into a product is the work we do together.' },
   { q: 'How early is too early?', a: 'Rarely too early. Many good products start as a frustration you cannot stop thinking about. Idea assessment exists to test exactly that.' },
   { q: 'Will you build any idea I send?', a: 'Not every idea. We first assess the clinical problem, the market fit and the patent potential, and we will be honest with you about what we find.' },
-  { q: 'Do I need to be in Pune?', a: 'We are based in Pune and work with healthcare professionals across India.' },
+  { q: 'Do I need to be a doctor?', a: 'No. Nurses, therapists, technicians, healthcare helpers and anyone who works directly with patients are especially welcome. Engineers, students and founders with a healthtech idea can apply too.' },
+  { q: 'Do I need to be in Pune?', a: 'We are based in Pune and work with healthcare professionals across India, and welcome collaborators from abroad.' },
   { q: 'I am an investor or organisation. How do I reach you?', a: 'Write to biolaunchpad@gmail.com and tell us what you have in mind. Links for partnership and investor enquiries are below.' },
 ];
 
@@ -429,6 +336,11 @@ function Questions() {
         <div className="lg:col-span-4">
           <Reveal><Label>06 / Questions</Label></Reveal>
           <Reveal delay={0.1}><h2 className="font-display mt-6 text-5xl md:text-6xl leading-[0.98] tracking-[-0.03em]">Honest answers, <em className="text-[#1d6b3a] font-[340]">before you apply.</em></h2></Reveal>
+          <Reveal delay={0.15}>
+            <Link href="/faqs" data-testid="link-home-all-faqs" className="mt-8 inline-flex items-center gap-2 font-semibold underline underline-offset-4 decoration-[#5be36f] decoration-2">
+              All questions, searchable <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </Reveal>
         </div>
         <div className="lg:col-span-8">
           {FAQ.map((f, i) => {
@@ -476,10 +388,10 @@ function FinalCTA() {
           </Reveal>
           <Reveal delay={0.2}>
             <div className="mt-12 flex flex-wrap gap-4">
-              <a href={APPLY} data-testid="link-final-apply" className="group inline-flex items-center gap-3 rounded-full bg-[#0f2a1d] pl-7 pr-2 py-2 text-[#f4efe3] font-semibold hover:-translate-y-0.5 transition-transform">
+              <Link href="/apply-now" data-testid="link-final-apply" className="group inline-flex items-center gap-3 rounded-full bg-[#0f2a1d] pl-7 pr-2 py-2 text-[#f4efe3] font-semibold hover:-translate-y-0.5 transition-transform">
                 Apply with your idea
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-[#5be36f] text-[#0f2a1d] group-hover:rotate-45 transition-transform"><ArrowUpRight className="h-4 w-4" /></span>
-              </a>
+              </Link>
               <a href={MAIL_PARTNER} data-testid="link-final-partner" className="inline-flex items-center rounded-full border border-[#0f2a1d]/40 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d]/10">Partnership enquiry</a>
               <a href={MAIL_INVEST} data-testid="link-final-investor" className="inline-flex items-center rounded-full border border-[#0f2a1d]/40 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d]/10">Investor enquiry</a>
             </div>
@@ -490,52 +402,23 @@ function FinalCTA() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="mx-auto max-w-[1320px] px-5 md:px-10 py-14">
-      <div className="grid md:grid-cols-12 gap-10">
-        <div className="md:col-span-5">
-          <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Biolaunchpad" className="h-7 w-auto" />
-          <p className="mt-5 text-[#0f2a1d]/65 max-w-sm">The hands-on partner for doctors and healthcare professionals turning clinical problems into real products.</p>
-        </div>
-        <div className="md:col-span-3">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#1d6b3a]">Explore</p>
-          <ul className="mt-4 space-y-2">
-            {NAV.map((n) => <li key={n.href}><a href={n.href} className="hover:text-[#1d6b3a]" data-testid={`link-footer-${n.href.slice(1)}`}>{n.label}</a></li>)}
-          </ul>
-        </div>
-        <div className="md:col-span-4">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#1d6b3a]">Contact</p>
-          <a href={MAIL} className="mt-4 flex items-center gap-3 hover:text-[#1d6b3a]" data-testid="link-footer-email"><Mail className="h-4 w-4" />biolaunchpad@gmail.com</a>
-          <p className="mt-2 flex items-center gap-3"><MapPin className="h-4 w-4" />Pune, India</p>
-          <a href={APPLY} className="mt-4 inline-block font-semibold underline underline-offset-4 decoration-[#5be36f] decoration-2" data-testid="link-footer-apply">Apply now</a>
-        </div>
-      </div>
-      <div className="mt-14 pt-6 border-t border-[#0f2a1d]/10 flex flex-col sm:flex-row justify-between gap-2 text-sm text-[#0f2a1d]/50">
-        <p>&copy; {new Date().getFullYear()} Biolaunchpad. Pune, India.</p>
-        <a href="#top" className="hover:text-[#0f2a1d]" data-testid="link-back-top">Back to top</a>
-      </div>
-    </footer>
-  );
-}
-
 export default function Home() {
+  useSeo({
+    title: "Biolaunchpad | You see what healthcare needs. Let's build it.",
+    description: 'Biolaunchpad partners with healthcare professionals to turn first-hand problems into products that improve patient care. Doctors, nurses, therapists, technicians and anyone working directly with patients. Based in Pune, India.',
+    path: '/',
+  });
   return (
-    <div className="min-h-[100dvh] bg-[#f4efe3] text-[#0f2a1d] overflow-x-clip">
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[70] focus:bg-[#0f2a1d] focus:text-[#f4efe3] focus:px-4 focus:py-2 focus:rounded-full">Skip to content</a>
-      <Nav />
-      <main id="main">
-        <Hero />
-        <Marquee />
-        <Who />
-        <Partnership />
-        <Journey />
-        <Focus />
-        <Bring />
-        <Questions />
-        <FinalCTA />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <Marquee />
+      <Who />
+      <Partnership />
+      <Journey />
+      <Focus />
+      <Bring />
+      <Questions />
+      <FinalCTA />
+    </>
   );
 }
