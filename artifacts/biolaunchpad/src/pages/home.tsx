@@ -3,6 +3,7 @@ import { Link } from 'wouter';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { Reveal, Label, PrimaryCTA, Mark } from '@/components/brand';
+import { HeroTrace } from '@/components/hero-trace';
 import { MAIL_INVEST, MAIL_PARTNER } from '@/lib/site';
 import { useSeo } from '@/lib/seo';
 
@@ -44,11 +45,14 @@ function Hero() {
               Your experience with patients can be the starting point for a better medical device or healthcare tool. We bring the development support to move your idea forward, while you stay involved in the work that inspired it.
             </p>
           </Reveal>
-          <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
+          <Reveal className="md:col-span-6 lg:col-span-7 flex flex-col md:items-end gap-6 md:gap-8" delay={0.45}>
+            <HeroTrace className="w-full max-w-[280px] sm:max-w-[400px] lg:max-w-[460px]" />
+            <div className="flex flex-wrap gap-4 md:justify-end">
             <PrimaryCTA testid="link-hero-apply">Apply with your idea</PrimaryCTA>
             <Link href="/how-it-works" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
               See how it works
             </Link>
+            </div>
           </Reveal>
         </div>
       </div>
