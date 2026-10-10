@@ -1,62 +1,102 @@
 import { motion, useReducedMotion } from 'framer-motion';
 
-const EASE = [0.45, 0, 0.2, 1] as const;
-const CYCLE = 11;
+type Form = {
+  d: string;
+  fill?: string;
+  stroke?: string;
+  sw?: number;
+  drift: { x: number[]; y: number[]; rotate: number[] };
+  dur: number;
+  origin: string;
+  mobile?: boolean;
+};
 
-const LINES = [
-  // device body: a soft handheld instrument outline
-  { d: 'M40 120 C40 78 70 60 110 60 L250 60 C300 60 330 84 330 120 C330 156 300 180 250 180 L110 180 C70 180 40 162 40 120 Z', w: 1.1, o: 0.55, delay: 0 },
-  // inner engineering panel
-  { d: 'M120 92 L230 92 C244 92 252 100 252 114 L252 126 C252 140 244 148 230 148 L120 148', w: 0.8, o: 0.4, delay: 0.6 },
-  // organic observation curve flowing into the device
-  { d: 'M0 40 C40 40 52 92 92 104 C108 109 116 114 120 120', w: 0.9, o: 0.45, delay: 1.2 },
-  // output line toward something useful
-  { d: 'M330 120 C352 120 360 96 384 92 L420 92', w: 0.9, o: 0.45, delay: 2.0 },
-  // fine measurement ticks
-  { d: 'M150 170 L150 176 M180 170 L180 176 M210 170 L210 176 M240 170 L240 176', w: 0.7, o: 0.35, delay: 2.4 },
-];
-
-const NODES = [
-  { cx: 92, cy: 104, delay: 1.9, bright: false },
-  { cx: 120, cy: 120, delay: 2.3, bright: false },
-  { cx: 252, cy: 120, delay: 2.8, bright: true },
-  { cx: 384, cy: 92, delay: 3.4, bright: true },
+const FORMS: Form[] = [
+  // large deep pebble, the anchor
+  {
+    d: 'M118 46 C178 22 262 38 286 96 C308 150 262 196 196 204 C128 212 70 184 62 132 C56 92 76 62 118 46 Z',
+    fill: 'url(#ht-deep)',
+    drift: { x: [0, 6, 0], y: [0, -4, 0], rotate: [0, 3, 0] },
+    dur: 16,
+    origin: '174px 124px',
+    mobile: true,
+  },
+  // translucent leaf overlapping right
+  {
+    d: 'M220 70 C276 34 368 46 392 104 C412 154 366 192 300 190 C244 188 196 160 192 122 C190 100 200 82 220 70 Z',
+    fill: 'url(#ht-mid)',
+    drift: { x: [0, -10, 0], y: [0, 6, 0], rotate: [0, -4, 0] },
+    dur: 19,
+    origin: '296px 120px',
+    mobile: true,
+  },
+  // bright green seed, the accent
+  {
+    d: 'M262 128 C282 108 318 112 326 136 C334 160 312 178 288 176 C264 174 248 148 262 128 Z',
+    fill: '#5be36f',
+    drift: { x: [0, 8, 0], y: [0, -8, 0], rotate: [0, 8, 0] },
+    dur: 13,
+    origin: '292px 144px',
+    mobile: true,
+  },
+  // pale ivory-green overlay cutting across
+  {
+    d: 'M40 150 C90 112 170 118 226 146 C262 164 250 200 204 210 C140 222 64 204 40 180 C30 170 30 158 40 150 Z',
+    fill: 'rgba(233,226,208,0.55)',
+    drift: { x: [0, 12, 0], y: [0, -3, 0], rotate: [0, 2, 0] },
+    dur: 21,
+    origin: '140px 170px',
+  },
+  // contour outline echoing the pebble
+  {
+    d: 'M104 32 C176 2 282 22 306 92 C330 160 270 220 190 224 C112 228 44 190 40 128 C38 82 62 50 104 32 Z',
+    stroke: '#1d6b3a',
+    sw: 1,
+    drift: { x: [0, -5, 0], y: [0, 5, 0], rotate: [0, -2.5, 0] },
+    dur: 23,
+    origin: '174px 124px',
+    mobile: true,
+  },
+  // second offset contour
+  {
+    d: 'M232 54 C300 20 392 40 408 108',
+    stroke: '#1d6b3a',
+    sw: 1,
+    drift: { x: [0, 6, 0], y: [0, 4, 0], rotate: [0, 3, 0] },
+    dur: 17,
+    origin: '320px 80px',
+  },
 ];
 
 export function HeroTrace({ className = '' }: { className?: string }) {
   const reduce = useReducedMotion();
   return (
     <div className={`pointer-events-none select-none ${className}`} aria-hidden="true">
-      <svg viewBox="0 0 420 200" className="w-full h-auto overflow-visible" fill="none" focusable="false">
-        {LINES.map((l, i) => (
+      <svg viewBox="0 0 440 240" className="w-full h-auto overflow-visible" fill="none" focusable="false">
+        <defs>
+          <linearGradient id="ht-deep" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#1d6b3a" stopOpacity="0.92" />
+            <stop offset="1" stopColor="#0f2a1d" stopOpacity="0.95" />
+          </linearGradient>
+          <linearGradient id="ht-mid" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#5be36f" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#1d6b3a" stopOpacity="0.35" />
+          </linearGradient>
+        </defs>
+        {FORMS.map((f, i) => (
           <motion.path
             key={i}
-            d={l.d}
-            stroke="#1d6b3a"
-            strokeWidth={l.w}
-            strokeOpacity={l.o}
-            strokeLinecap="round"
+            d={f.d}
+            fill={f.fill ?? 'none'}
+            stroke={f.stroke}
+            strokeWidth={f.sw}
+            strokeOpacity={f.stroke ? 0.45 : undefined}
             vectorEffect="non-scaling-stroke"
-            className={i >= 3 ? 'hidden sm:block' : undefined}
-            initial={reduce ? false : { pathLength: 0, opacity: 0 }}
-            animate={reduce ? { pathLength: 1, opacity: 1 } : { pathLength: [0, 1, 1, 0], opacity: [0, 1, 1, 0] }}
-            transition={reduce ? { duration: 0 } : { duration: CYCLE, times: [0, 0.38, 0.85, 1], delay: l.delay * 0.4, repeat: Infinity, repeatDelay: 1.5, ease: EASE }}
+            className={f.mobile ? undefined : 'hidden sm:block'}
+            style={{ transformOrigin: f.origin, mixBlendMode: i === 1 ? 'multiply' : undefined }}
+            animate={reduce ? undefined : f.drift}
+            transition={reduce ? undefined : { duration: f.dur, repeat: Infinity, ease: 'easeInOut' }}
           />
-        ))}
-        {NODES.map((n, i) => (
-          <g key={i} className={i === 3 ? 'hidden sm:block' : undefined}>
-            <circle cx={n.cx} cy={n.cy} r={6} stroke="#1d6b3a" strokeOpacity={0.18} strokeWidth={0.8} vectorEffect="non-scaling-stroke" />
-            <motion.circle
-              cx={n.cx}
-              cy={n.cy}
-              r={n.bright ? 3 : 2.4}
-              fill={n.bright ? '#5be36f' : '#1d6b3a'}
-              initial={reduce ? false : { opacity: 0, scale: 0.4 }}
-              style={{ transformOrigin: `${n.cx}px ${n.cy}px` }}
-              animate={reduce ? { opacity: 1, scale: 1 } : { opacity: [0, 0, 1, 1, 0], scale: [0.4, 0.4, 1, 1, 0.4] }}
-              transition={reduce ? { duration: 0 } : { duration: CYCLE, times: [0, n.delay / CYCLE, n.delay / CYCLE + 0.06, 0.85, 1], repeat: Infinity, repeatDelay: 1.5, ease: EASE }}
-            />
-          </g>
         ))}
       </svg>
     </div>
