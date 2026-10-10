@@ -17,14 +17,7 @@ function Hero() {
   return (
     <section id="top" ref={ref} className="relative pt-[120px] md:pt-[150px] pb-16 md:pb-24 overflow-hidden">
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
-        <motion.div initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8 }} className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Label>For everyone who works directly with patients</Label>
-          <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[#0f2a1d]/60">
-            <span className="relative h-2 w-2"><span className="absolute inset-0 rounded-full bg-[#5be36f] anim-pulse" /><span className="absolute inset-0 rounded-full bg-[#2fb24a]" /></span>
-            Pune, India
-          </span>
-        </motion.div>
-        <h1 className="font-display mt-8 text-[clamp(3rem,9.4vw,9.5rem)] leading-[0.92] tracking-[-0.035em] text-[#0f2a1d] font-[420]">
+        <h1 className="font-display text-[clamp(3rem,9.4vw,9.5rem)] leading-[0.92] tracking-[-0.035em] text-[#0f2a1d] font-[420]">
           <span className="block">
             {words.map((w, i) => (
               <motion.span key={w} className="inline-block mr-[0.22em]" initial={reduce ? false : { opacity: 0, y: '0.5em' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}>
