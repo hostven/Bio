@@ -5,6 +5,7 @@ import { ArrowUpRight, Plus, Minus } from 'lucide-react';
 import { Reveal, Label, PrimaryCTA, Mark } from '@/components/brand';
 import { MAIL_INVEST, MAIL_PARTNER } from '@/lib/site';
 import { useSeo } from '@/lib/seo';
+import { MatterOfMedtech } from '@/components/matter-of-medtech';
 
 function Hero() {
   const reduce = useReducedMotion();
@@ -419,6 +420,7 @@ export default function Home() {
       <Bring />
       <Questions />
       <FinalCTA />
+      <MatterOfMedtech />
     </>
   );
 }

@@ -32,6 +32,9 @@ _Populate as you build — non-obvious choices a reader couldn't infer from the 
 
 _Describe the high-level user-facing capabilities of this app once they exist._
 
+- Matter of Medtech is an initiative by Ninad Saraf focused on medtech's evolution from an Indian perspective, with discussions, insights and collaborations. Feature it as a collaboration, distinct from Biolaunchpad's product-development work, not as an established news outlet.
+- Keep the Matter of Medtech collaboration last on the landing page, immediately above the footer. The user explicitly rejected placing it in the middle because it looks odd there.
+
 ## User preferences
 
 - Do not use em dashes in website content.
