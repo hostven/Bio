@@ -76,13 +76,13 @@ export default function AboutUs() {
               Healthcare professionals are excellent at <Mark>spotting problems</Mark>. Few have the exposure, time or team to <Mark>turn them into technology</Mark>. They need a trusted partner.
             </p>
           </Reveal>
-          <div className="mt-14 grid md:grid-cols-12 gap-px bg-[#0f2a1d]/12 rounded-[28px] overflow-hidden border border-[#0f2a1d]/12">
+          <div className="mt-14 grid grid-cols-1 lg:grid-cols-3 auto-rows-fr gap-px bg-[#0f2a1d]/12 rounded-[28px] overflow-hidden border border-[#0f2a1d]/12">
             {GAPS.map((g, i) => (
-              <Reveal key={g.t} delay={i * 0.08} className={`bg-[#faf6ec] ${['md:col-span-5', 'md:col-span-7', 'md:col-span-12'][i]}`}>
-                <div className="p-8 md:p-10 h-full">
-                  <span className="font-display italic text-5xl text-[#2fb24a]">{i + 1}</span>
-                  <h3 className="font-display mt-6 text-2xl md:text-3xl">{g.t}</h3>
-                  <p className="mt-3 text-[#0f2a1d]/70 leading-relaxed max-w-xl">{g.d}</p>
+              <Reveal key={g.t} delay={i * 0.08} className="bg-[#faf6ec] min-w-0 h-full">
+                <div className="p-7 sm:p-8 xl:p-10 h-full flex flex-col" data-testid={`card-gap-${i}`}>
+                  <span className="font-display italic text-5xl leading-none text-[#2fb24a]">{i + 1}</span>
+                  <h3 className="font-display mt-6 text-2xl xl:text-3xl leading-[1.2] min-h-[2.4em]">{g.t}</h3>
+                  <p className="mt-3 text-[#0f2a1d]/70 leading-relaxed">{g.d}</p>
                 </div>
               </Reveal>
             ))}
