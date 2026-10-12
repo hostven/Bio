@@ -7,6 +7,7 @@ import { MAIL_INVEST, MAIL_PARTNER } from '@/lib/site';
 import { useSeo } from '@/lib/seo';
 import { MatterOfMedtech } from '@/components/matter-of-medtech';
 import { JourneyOverview } from '@/components/journey-overview';
+import { HeroOrb } from '@/components/hero-orb';
 
 function Hero() {
   const reduce = useReducedMotion();
@@ -40,6 +41,7 @@ function Hero() {
             </p>
           </Reveal>
           <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
+            <div className="w-full flex justify-center md:justify-end md:pr-10 mb-2 md:mb-6"><HeroOrb /></div>
             <PrimaryCTA testid="link-hero-apply">Apply with your idea</PrimaryCTA>
             <Link href="/how-it-works" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
               See how it works

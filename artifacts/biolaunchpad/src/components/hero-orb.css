@@ -1,0 +1,23 @@
+.hero-orb{position:relative;width:clamp(150px,34vw,260px);aspect-ratio:1;pointer-events:none;user-select:none;isolation:isolate}
+.hero-orb *{pointer-events:none}
+.orb-halo{position:absolute;inset:-14%;border-radius:50%;background:radial-gradient(circle,rgba(91,227,111,.42) 0%,rgba(140,240,170,.18) 38%,rgba(244,239,227,0) 68%);filter:blur(18px);animation:orbHalo 6s ease-in-out infinite}
+.orb-body{position:absolute;inset:8%;border-radius:47% 53% 55% 45%/50% 44% 56% 50%;overflow:hidden;background:radial-gradient(circle at 50% 55%,#2fae55 0%,#16683a 55%,#0f2a1d 100%);box-shadow:0 24px 50px -18px rgba(15,42,29,.55),inset 0 -14px 30px rgba(15,42,29,.5);animation:orbMorph 11s ease-in-out infinite,orbFloat 7s ease-in-out infinite}
+.orb-body>div{position:absolute;border-radius:50%;mix-blend-mode:screen}
+.orb-core{inset:22%;background:radial-gradient(circle,#e9ffd9 0%,#9cf27a 30%,rgba(91,227,111,0) 70%);filter:blur(8px);animation:orbPulse 4.2s ease-in-out infinite}
+.orb-lobe{width:72%;height:72%;filter:blur(10px)}
+.orb-lobe-a{left:-6%;top:-4%;background:radial-gradient(circle,rgba(190,255,90,.95),rgba(190,255,90,0) 65%);animation:orbSpinA 9s linear infinite;transform-origin:70% 70%}
+.orb-lobe-b{right:-8%;bottom:-6%;background:radial-gradient(circle,rgba(70,240,180,.9),rgba(70,240,180,0) 65%);animation:orbSpinB 12s linear infinite;transform-origin:30% 30%}
+.orb-lobe-c{left:20%;bottom:-14%;width:60%;height:60%;background:radial-gradient(circle,rgba(91,227,111,.95),rgba(91,227,111,0) 65%);animation:orbSpinA 7.5s linear infinite reverse;transform-origin:50% 0%}
+.orb-ribbon{inset:-20%;border-radius:50%;background:conic-gradient(from 0deg,rgba(220,255,200,0) 0deg,rgba(220,255,200,.55) 40deg,rgba(220,255,200,0) 90deg,rgba(150,255,190,0) 200deg,rgba(150,255,190,.4) 240deg,rgba(150,255,190,0) 290deg);filter:blur(6px);animation:orbRot 8s linear infinite}
+.orb-shine{left:18%;top:10%;width:42%;height:26%;background:radial-gradient(ellipse,rgba(255,253,240,.85),rgba(255,253,240,0) 70%);filter:blur(4px);mix-blend-mode:normal!important;animation:orbShine 6.5s ease-in-out infinite}
+.orb-rim{inset:0;border-radius:inherit!important;box-shadow:inset 0 0 0 1px rgba(233,255,217,.35),inset 0 0 22px rgba(190,255,150,.35);mix-blend-mode:normal!important}
+.orb-paused .orb-halo,.orb-paused .orb-body,.orb-paused .orb-body>div{animation-play-state:paused}
+@keyframes orbMorph{0%,100%{border-radius:47% 53% 55% 45%/50% 44% 56% 50%}25%{border-radius:56% 44% 48% 52%/43% 55% 45% 57%}50%{border-radius:44% 56% 42% 58%/55% 48% 52% 45%}75%{border-radius:52% 48% 57% 43%/47% 58% 42% 53%}}
+@keyframes orbFloat{0%,100%{transform:translate3d(0,0,0) rotate(0)}50%{transform:translate3d(0,-8px,0) rotate(6deg)}}
+@keyframes orbHalo{0%,100%{transform:scale(.94);opacity:.8}50%{transform:scale(1.06);opacity:1}}
+@keyframes orbPulse{0%,100%{transform:scale(.9);opacity:.75}50%{transform:scale(1.12);opacity:1}}
+@keyframes orbSpinA{to{transform:rotate(360deg)}}
+@keyframes orbSpinB{to{transform:rotate(-360deg)}}
+@keyframes orbRot{to{transform:rotate(360deg)}}
+@keyframes orbShine{0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.8}50%{transform:translate3d(14%,6%,0) scale(.85);opacity:.55}}
+@media (max-width:767px){.hero-orb{width:132px}}
