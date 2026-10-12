@@ -29,8 +29,8 @@ export function Label({ children, light = false }: { children: ReactNode; light?
 }
 
 /** Logo: derived contrast variants of the original artwork. Proportions and all lettering kept intact. */
-export function Logo({ tone = 'ivory', className = 'h-6 md:h-7 w-auto' }: { tone?: 'ivory' | 'forest'; className?: string }) {
-  return <img src={asset(tone === 'ivory' ? 'logo-ivory.png' : 'logo-forest.png')} alt="Biolaunchpad" width={672} height={122} className={className} />;
+export function Logo({ tone = 'forest', className = 'h-6 md:h-7 w-auto' }: { tone?: 'ivory' | 'forest'; className?: string }) {
+  return <img src={asset(tone === 'ivory' ? 'logo-ivory.svg' : 'logo-forest.svg')} alt="Biolaunchpad" width={672} height={122} className={className} />;
 }
 
 const isInternal = (href: string) => href.startsWith('/') && !href.startsWith('//');

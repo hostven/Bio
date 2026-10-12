@@ -46,6 +46,7 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 - Explain the partnership through medtech hardware costs, development complexity and regulatory challenges, not comparisons with agencies. Clinical practice is an advantage for evidence and adoption; innovators need not leave their whole practice.
 - Explicitly include technicians, healthcare helpers, and anyone working directly with patients. Their first-hand understanding of real problems matters alongside clinical qualifications.
 - Use the supplied Biolaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.
+- Preserve the original green in the supplied Illustrator logo. LAUNCH should be black on light backgrounds and white on dark backgrounds.
 - The existing live website must remain untouched while the replacement is developed here.
 
 ## Gotchas
