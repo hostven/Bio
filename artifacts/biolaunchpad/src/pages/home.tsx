@@ -254,7 +254,7 @@ function Bring() {
           ))}
         </div>
         <Reveal delay={0.2}>
-          <div className="mt-12 flex flex-col sm:flex-row sm:items-center gap-6">
+          <div className="mt-12 flex flex-col items-start sm:flex-row sm:items-center gap-6">
             <PrimaryCTA testid="link-bring-apply">Start your application</PrimaryCTA>
             <p className="text-[#f4efe3]/60 max-w-sm">About ten minutes. It prepares an email draft in your own email app, and nothing is sent until you press send.</p>
           </div>
