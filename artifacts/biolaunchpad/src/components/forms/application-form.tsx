@@ -114,7 +114,7 @@ export function ApplicationForm({ app }: { app: ReturnType<typeof useApplication
 
       <FormSection id="background" n="02" title="Your background" intro="You do not need a medical degree to apply. This helps us understand your perspective.">
         <PillRadio id="profession" label="Which best describes you?" required options={PROFESSIONS} value={v.profession} onChange={set('profession')} error={errors.profession} />
-        <TextField id="degree" label="Degree" required value={v.degree} onChange={set('degree')} error={errors.degree} placeholder="For example MBBS, BPT, B.Sc Nursing, B.Tech" />
+        <TextField id="degree" label="Degree" required value={v.degree} onChange={set('degree')} error={errors.degree} placeholder="Your degree or education background" hint="For example MBBS, BPT, B.Sc Nursing, B.Tech, dropout, or no formal education." />
         <SelectField id="role" label="Primary professional role" required placeholder="Select your role" options={toOpts(ROLES)} value={v.role} onChange={(val) => { set('role')(val); set('allopathy')(''); set('surgical')(''); }} error={errors.role} />
         {v.role === 'Other' && <TextField id="roleOther" label="Your role" required value={v.roleOther} onChange={set('roleOther')} error={errors.roleOther} />}
         {v.role === 'Allopathy doctor' && <SelectField id="allopathy" label="Your specialty" required placeholder="Select specialty" options={toOpts(ALLOPATHY_SPECIALTIES)} value={v.allopathy} onChange={set('allopathy')} error={errors.allopathy} />}
