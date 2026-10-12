@@ -42,6 +42,7 @@ _Describe the high-level user-facing capabilities of this app once they exist._
 - Always spell the brand name "Biolaunchpad", with a lowercase l, everywhere going forward.
 - The user loves the forest-green and ivory redesign: preserve that direction when extending the site.
 - Keep the approved definition: "Biolaunchpad partners with healthcare professionals to turn first-hand problems into products that improve patient care."
+- The landing screen must show the hero headline, "Let's build it", the approved definition and the green blob together without scrolling on desktop and mobile. Supporting explanation belongs below.
 - Explain the partnership through medtech hardware costs, development complexity and regulatory challenges, not comparisons with agencies. Clinical practice is an advantage for evidence and adoption; innovators need not leave their whole practice.
 - Explicitly include technicians, healthcare helpers, and anyone working directly with patients. Their first-hand understanding of real problems matters alongside clinical qualifications.
 - Use the supplied Biolaunchpad logo. LSI USA Summit, Redesign Health, and Terrarium are design and content inspiration only; do not copy them directly.

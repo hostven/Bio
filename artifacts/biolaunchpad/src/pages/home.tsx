@@ -17,39 +17,47 @@ function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.08]);
   const words = ['You', 'see', 'what', 'healthcare', 'needs.'];
   return (
-    <section id="top" ref={ref} className="relative pt-[120px] md:pt-[150px] pb-16 md:pb-24 overflow-hidden">
+    <section id="top" ref={ref} className="relative pt-[88px] md:pt-[104px] pb-16 md:pb-24 overflow-hidden">
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
-        <h1 className="font-display text-[clamp(3rem,9.4vw,9.5rem)] leading-[0.92] tracking-[-0.035em] text-[#0f2a1d] font-[420]">
-          <span className="block">
-            {words.map((w, i) => (
-              <motion.span key={w} className="inline-block mr-[0.22em]" initial={reduce ? false : { opacity: 0, y: '0.5em' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}>
-                {w}
+        <div className="grid md:grid-cols-12 gap-x-8 gap-y-4 items-center md:min-h-[calc(100dvh-104px)] md:max-h-[820px] pb-6">
+          <div className="md:col-span-8 lg:col-span-8">
+            <h1 className="font-display text-[clamp(2.6rem,10.4vw,3.7rem)] md:text-[clamp(3.5rem,7vw,7rem)] leading-[0.98] tracking-[-0.03em] text-[#0f2a1d] font-[420]">
+              <span className="block">
+                {words.map((w, i) => (
+                  <motion.span key={w} className="inline-block mr-[0.24em]" initial={reduce ? false : { opacity: 0, y: '0.5em' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.1 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}>
+                    {w}
+                  </motion.span>
+                ))}
+              </span>
+              <motion.span className="block mt-1 italic font-[340] text-[#1d6b3a]" initial={reduce ? false : { opacity: 0, y: '0.4em' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}>
+                Let's build it<span className="not-italic text-[#5be36f]">.</span>
               </motion.span>
-            ))}
-          </span>
-          <motion.span className="block italic font-[340] text-[#1d6b3a]" initial={reduce ? false : { opacity: 0, y: '0.4em' }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}>
-            Let's build it<span className="not-italic text-[#5be36f]">.</span>
-          </motion.span>
-        </h1>
-        <div className="mt-10 md:mt-14 grid md:grid-cols-12 gap-8 items-end">
-          <Reveal className="md:col-span-6 lg:col-span-5" delay={0.3}>
-            <p className="font-display text-2xl md:text-[1.9rem] leading-[1.25] tracking-[-0.01em] text-[#0f2a1d]" data-testid="text-definition">
-              Biolaunchpad partners with healthcare professionals to turn <Mark>first-hand problems</Mark> into products that improve patient care.
-            </p>
-            <p className="mt-5 text-lg leading-relaxed text-[#0f2a1d]/75">
-              Your experience with patients can be the starting point for a better medical device or healthcare tool. We bring the development support to move your idea forward, while you stay involved in the work that inspired it.
-            </p>
-          </Reveal>
-          <Reveal className="md:col-span-6 lg:col-span-7 flex flex-wrap gap-4 md:justify-end" delay={0.45}>
-            <div className="w-full flex justify-center md:justify-end md:pr-10 mb-2 md:mb-6"><HeroOrb /></div>
-            <PrimaryCTA testid="link-hero-apply">Apply with your idea</PrimaryCTA>
-            <Link href="/how-it-works" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-4 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
-              See how it works
-            </Link>
+            </h1>
+            <Reveal delay={0.3}>
+              <p className="mt-4 md:mt-7 max-w-[34rem] font-display text-[1.15rem] sm:text-xl md:text-[1.6rem] leading-[1.3] tracking-[-0.01em] text-[#0f2a1d]" data-testid="text-definition">
+                Biolaunchpad partners with healthcare professionals to turn <Mark>first-hand problems</Mark> into products that improve patient care.
+              </p>
+            </Reveal>
+            <Reveal delay={0.45} className="mt-5 md:mt-8 flex flex-wrap gap-3">
+              <PrimaryCTA testid="link-hero-apply">Apply with your idea</PrimaryCTA>
+              <Link href="/how-it-works" data-testid="link-hero-journey" className="inline-flex items-center rounded-full border border-[#0f2a1d]/25 px-6 py-3.5 font-semibold text-[#0f2a1d] hover:bg-[#0f2a1d] hover:text-[#f4efe3] transition-colors">
+                See how it works
+              </Link>
+            </Reveal>
+          </div>
+          <Reveal className="order-first md:order-none md:col-span-4 flex justify-start md:justify-center" delay={0.35}>
+            <HeroOrb className="hero-orb-hero" />
           </Reveal>
         </div>
       </div>
-      <div className="mx-auto max-w-[1320px] px-5 md:px-10 mt-14 md:mt-20">
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10 mt-8 md:mt-10">
+        <Reveal>
+          <p className="max-w-3xl text-xl md:text-2xl leading-relaxed text-[#0f2a1d]/75" data-testid="text-hero-support">
+            Your experience with patients can be the starting point for a better medical device or healthcare tool. We bring the development support to move your idea forward, while you stay involved in the work that inspired it.
+          </p>
+        </Reveal>
+      </div>
+      <div className="mx-auto max-w-[1320px] px-5 md:px-10 mt-8 md:mt-10">
         <div className="relative overflow-hidden rounded-[28px] md:rounded-[40px] aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] bg-[#0f2a1d]">
           <motion.img style={{ y, scale }} src={`${import.meta.env.BASE_URL}engineering-workbench.webp`} alt="Medical device prototypes, engineering sketches and tools on a development workbench" decoding="async" width={1024} height={576} className="absolute inset-0 h-[115%] w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a1d]/85 via-[#0f2a1d]/10 to-transparent" />
@@ -199,8 +207,8 @@ function Focus() {
                 <circle cx="100" cy="100" r="36" fill="none" stroke="currentColor" strokeWidth="1" />
                 <path d="M4 100h192M100 4v192" stroke="currentColor" strokeWidth="1" />
               </svg>
-              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#0f2a1d]">Our particular focus</p>
-              <h3 className="font-display mt-6 text-5xl md:text-7xl leading-[0.95] tracking-[-0.03em] text-[#0f2a1d] max-w-lg">Hardtech medical devices, <em className="font-[340]">made in India.</em></h3>
+              <p className="relative inline-flex self-start rounded-full bg-[#0f2a1d] px-4 py-2 font-mono text-xs md:text-sm font-bold uppercase tracking-[0.18em] text-[#5be36f]">Our particular focus</p>
+              <h3 className="relative font-display mt-6 md:mt-8 text-[clamp(2.6rem,7vw,5.75rem)] font-[650] leading-[0.95] tracking-[-0.035em] text-[#0f2a1d] max-w-2xl break-words">Hardtech medical devices, <em className="font-[500]">made in India.</em></h3>
               <p className="mt-auto pt-10 text-lg md:text-xl text-[#0f2a1d]/85 max-w-md leading-relaxed">Physical devices are hard to build and harder to get right. That is exactly why we lean in. If your idea is something a clinician will hold, wear or use at the bedside, we especially want to hear it.</p>
             </div>
           </Reveal>

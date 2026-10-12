@@ -21,3 +21,6 @@
 @keyframes orbRot{to{transform:rotate(360deg)}}
 @keyframes orbShine{0%,100%{transform:translate3d(0,0,0) scale(1);opacity:.8}50%{transform:translate3d(14%,6%,0) scale(.85);opacity:.55}}
 @media (max-width:767px){.hero-orb{width:132px}}
+.hero-orb.hero-orb-hero{width:clamp(220px,26vw,340px)}
+@media (max-width:767px){.hero-orb.hero-orb-hero{width:96px}}
+@media (max-width:767px) and (min-height:800px){.hero-orb.hero-orb-hero{width:120px}}
