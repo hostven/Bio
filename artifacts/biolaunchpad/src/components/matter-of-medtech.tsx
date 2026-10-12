@@ -15,6 +15,8 @@ export function MatterOfMedtech() {
               <img
                 src={asset('matter-of-medtech.png')}
                 alt="Matter of Medtech"
+                loading="lazy"
+                decoding="async"
                 width={1024}
                 height={361}
                 className="w-full max-w-[380px] h-auto"

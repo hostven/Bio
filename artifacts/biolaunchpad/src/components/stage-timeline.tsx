@@ -3,15 +3,15 @@ import { motion, useMotionValueEvent, useReducedMotion, useScroll, useSpring } f
 import { STAGES } from '@/content/stages';
 import { EASE } from '@/lib/site';
 
-/** Scroll-linked explanation of the eight stages. With reduced motion, all stages render fully lit and static. */
+/** Reduced motion removes interpolation, without changing the actual scroll progress. */
 export function StageTimeline() {
   const reduce = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 65%', 'end 65%'] });
   const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
-  const [reached, setReached] = useState(reduce ? STAGES.length : 0);
+  const [reached, setReached] = useState(0);
   useMotionValueEvent(scrollYProgress, 'change', (p) => {
-    if (!reduce) setReached(Math.min(STAGES.length, Math.floor(p * STAGES.length + 0.35)));
+    setReached(Math.min(STAGES.length, Math.floor(p * STAGES.length + 0.35)));
   });
 
   return (
@@ -32,7 +32,7 @@ export function StageTimeline() {
 
       <ol className="relative">
         <div className="absolute left-[19px] md:left-[27px] top-2 bottom-2 w-px bg-[#0f2a1d]/12" aria-hidden />
-        <motion.div className="absolute left-[19px] md:left-[27px] top-2 bottom-2 w-[2px] -ml-[0.5px] bg-[#2fb24a] origin-top" style={{ scaleY: reduce ? 1 : fill }} aria-hidden />
+        <motion.div className="absolute left-[19px] md:left-[27px] top-2 bottom-2 w-[2px] -ml-[0.5px] bg-[#2fb24a] origin-top" style={{ scaleY: reduce ? scrollYProgress : fill }} aria-hidden />
         {STAGES.map((s, i) => {
           const lit = i < reached;
           return (
