@@ -6,6 +6,7 @@ import { Reveal, Label, PrimaryCTA, Mark } from '@/components/brand';
 import { MAIL_INVEST, MAIL_PARTNER } from '@/lib/site';
 import { useSeo } from '@/lib/seo';
 import { MatterOfMedtech } from '@/components/matter-of-medtech';
+import { JourneyOverview } from '@/components/journey-overview';
 
 function Hero() {
   const reduce = useReducedMotion();
@@ -173,66 +174,6 @@ function Partnership() {
   );
 }
 
-const STEPS = [
-  { n: '01', t: 'Idea assessment', d: 'We look hard at the idea together before anything gets built.', points: ['Is the clinical problem real and well defined?', 'Is there a market that needs this?', 'Is there potential for a patent?'] },
-  { n: '02', t: 'Partnership', d: 'If the idea holds up, we agree how we will work together and what each side brings.', points: ['Clear roles from day one', 'Your clinical insight stays central', 'A shared plan for the road ahead'] },
-  { n: '03', t: 'Prototyping and development', d: 'The concept becomes something you can test, hold, use and improve.', points: ['Early prototypes to learn fast', 'Iteration guided by clinical feedback', 'Development toward a usable product'] },
-  { n: '04', t: 'Launch', d: 'We work toward getting the product out of the lab and into the hands of the people it was made for.', points: ['Preparing the product for the real world', 'Planning the route to users', 'Staying alongside you through it'] },
-];
-
-function Journey() {
-  const [active, setActive] = useState(0);
-  return (
-    <section id="journey" className="bg-[#e9e2d0] py-24 md:py-36">
-      <div className="mx-auto max-w-[1320px] px-5 md:px-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <Reveal><Label>03 / The journey</Label></Reveal>
-            <Reveal delay={0.1}><h2 className="font-display mt-6 text-5xl md:text-7xl leading-[0.98] tracking-[-0.03em] max-w-3xl">Four stages. <em className="text-[#1d6b3a] font-[340]">One partner</em> the whole way.</h2></Reveal>
-          </div>
-          <Reveal delay={0.2}><p className="text-lg text-[#0f2a1d]/70 max-w-sm">Every idea moves at its own pace. This is the path we walk with you.</p></Reveal>
-        </div>
-        <div className="mt-16 grid lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5 flex flex-col gap-2" role="tablist" aria-label="Journey stages">
-            {STEPS.map((s, i) => (
-              <button
-                key={s.n}
-                role="tab"
-                aria-selected={active === i}
-                aria-controls="journey-panel"
-                onClick={() => setActive(i)}
-                onMouseEnter={() => setActive(i)}
-                data-testid={`button-step-${i}`}
-                className={`text-left rounded-2xl px-6 py-5 flex items-center gap-5 transition-colors duration-300 ${active === i ? 'bg-[#0f2a1d] text-[#f4efe3]' : 'hover:bg-[#0f2a1d]/5 text-[#0f2a1d]'}`}
-              >
-                <span className={`font-mono text-sm ${active === i ? 'text-[#5be36f]' : 'text-[#1d6b3a]'}`}>{s.n}</span>
-                <span className="font-display text-2xl md:text-3xl">{s.t}</span>
-                <ArrowUpRight className={`ml-auto h-5 w-5 transition-transform duration-300 ${active === i ? 'rotate-45 text-[#5be36f]' : 'opacity-40'}`} />
-              </button>
-            ))}
-          </div>
-          <div id="journey-panel" role="tabpanel" className="lg:col-span-7 relative rounded-[28px] bg-[#0f2a1d] text-[#f4efe3] p-8 md:p-12 min-h-[420px] overflow-hidden">
-            <span className="absolute -right-4 -bottom-16 font-display text-[16rem] md:text-[22rem] leading-none text-[#5be36f]/10 select-none" aria-hidden>{STEPS[active].n}</span>
-            <motion.div key={active} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} className="relative">
-              <div className="h-1.5 w-full bg-[#f4efe3]/10 rounded-full overflow-hidden">
-                <motion.div className="h-full bg-[#5be36f] origin-left" initial={{ scaleX: active / 4 }} animate={{ scaleX: (active + 1) / 4 }} transition={{ duration: 0.6 }} />
-              </div>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[#5be36f]">Stage {active + 1} of 4</p>
-              <h3 className="font-display mt-8 text-4xl md:text-6xl leading-none" data-testid="text-step-title">{STEPS[active].t}</h3>
-              <p className="mt-5 text-lg md:text-xl text-[#f4efe3]/75 max-w-lg">{STEPS[active].d}</p>
-              <ul className="mt-8 space-y-3">
-                {STEPS[active].points.map((p) => (
-                  <li key={p} className="flex gap-4 items-start text-[#f4efe3]/90"><span className="mt-2.5 h-1.5 w-1.5 rotate-45 bg-[#5be36f] shrink-0" />{p}</li>
-                ))}
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 const OTHERS = [
   { t: 'Biotechnology', d: 'Biological insight with a path to the clinic.' },
   { t: 'Software as a medical device', d: 'Software that plays a direct role in diagnosis or treatment.' },
@@ -282,8 +223,8 @@ function Focus() {
 
 function Bring() {
   const items = [
-    { t: 'A problem you have seen first-hand', d: 'Describe what goes wrong, for whom, and how often. Plain language is perfect.' },
-    { t: 'Your idea, however rough', d: 'A sketch, a voice note, a workaround you already use. Early is fine.' },
+    { t: 'A real care problem', d: 'You have seen it first-hand. Describe what goes wrong, for whom, and how often. Plain language is perfect.' },
+    { t: 'Your rough idea', d: 'A sketch, a voice note, a workaround you already use. Early is fine.' },
     { t: 'Time and curiosity', d: 'Partnership means staying involved. Your clinical eye is the part nobody else can supply.' },
   ];
   return (
@@ -291,13 +232,13 @@ function Bring() {
       <div className="mx-auto max-w-[1320px] px-5 md:px-10">
         <Reveal><Label light>05 / Next steps</Label></Reveal>
         <Reveal delay={0.1}><h2 className="font-display mt-6 text-5xl md:text-7xl leading-[0.98] tracking-[-0.03em] max-w-4xl">What to bring to the <em className="text-[#5be36f] font-[340]">first conversation.</em></h2></Reveal>
-        <div className="mt-16 grid md:grid-cols-12 gap-px bg-[#f4efe3]/10 rounded-[28px] overflow-hidden">
+        <div className="mt-16 grid auto-rows-fr md:grid-cols-3 gap-px bg-[#f4efe3]/10 rounded-[28px] overflow-hidden">
           {items.map((it, i) => (
-            <Reveal key={it.t} delay={i * 0.08} className={`bg-[#0f2a1d] ${i === 0 ? 'md:col-span-6' : 'md:col-span-3'}`}>
+            <Reveal key={it.t} delay={i * 0.08} className="bg-[#0f2a1d] h-full">
               <div className="p-8 md:p-10 h-full flex flex-col min-h-[300px]" data-testid={`card-bring-${i}`}>
                 <span className="font-display italic text-6xl text-[#5be36f]">{i + 1}</span>
-                <h3 className="font-display mt-auto pt-10 text-2xl md:text-3xl leading-tight">{it.t}</h3>
-                <p className="mt-3 text-[#f4efe3]/65 leading-relaxed">{it.d}</p>
+                <h3 className="font-display mt-auto pt-10 text-2xl md:text-3xl leading-tight min-h-[2.5em] flex items-end">{it.t}</h3>
+                <p className="mt-3 min-h-[5.2em] text-[#f4efe3]/65 leading-relaxed">{it.d}</p>
               </div>
             </Reveal>
           ))}
@@ -408,7 +349,7 @@ export default function Home() {
       <Marquee />
       <Who />
       <Partnership />
-      <Journey />
+      <JourneyOverview />
       <Focus />
       <Bring />
       <Questions />
