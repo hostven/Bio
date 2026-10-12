@@ -35,7 +35,7 @@ function Hero() {
             </h1>
             <Reveal delay={0.3}>
               <p className="mt-4 md:mt-7 max-w-[34rem] font-display text-[1.15rem] sm:text-xl md:text-[1.6rem] leading-[1.3] tracking-[-0.01em] text-[#0f2a1d]" data-testid="text-definition">
-                Biolaunchpad partners with healthcare professionals to turn <Mark>first-hand problems</Mark> into products that improve patient care.
+                Biolaunchpad partners with <span className="pencil-underline">healthcare professionals</span> to turn <Mark>first-hand problems</Mark> into products that improve patient care.
               </p>
             </Reveal>
             <Reveal delay={0.45} className="mt-5 md:mt-8 flex flex-wrap gap-3">
