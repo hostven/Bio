@@ -48,7 +48,7 @@ function Hero() {
       </div>
       <div className="mx-auto max-w-[1320px] px-5 md:px-10 mt-14 md:mt-20">
         <div className="relative overflow-hidden rounded-[28px] md:rounded-[40px] aspect-[4/5] sm:aspect-[16/9] md:aspect-[21/9] bg-[#0f2a1d]">
-          <motion.img style={{ y, scale }} src={`${import.meta.env.BASE_URL}hero.jpg`} alt="A clinician's paper sketch of a medical device beside an early physical prototype" className="absolute inset-0 h-[115%] w-full object-cover" />
+          <motion.img style={{ y, scale }} src={`${import.meta.env.BASE_URL}engineering-workbench.webp`} alt="Medical device prototypes, engineering sketches and tools on a development workbench" className="absolute inset-0 h-[115%] w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0f2a1d]/85 via-[#0f2a1d]/10 to-transparent" />
           <div className="absolute bottom-0 inset-x-0 p-6 md:p-10 flex flex-col md:flex-row md:items-end justify-between gap-4 text-[#f4efe3]">
             <p className="font-display italic text-2xl md:text-4xl max-w-xl leading-tight">From a note in the margin to something you can hold.</p>
