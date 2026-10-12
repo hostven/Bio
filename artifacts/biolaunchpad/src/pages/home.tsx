@@ -45,9 +45,9 @@ function Hero() {
               </Link>
             </Reveal>
           </div>
-          <Reveal className="order-first md:order-none md:col-span-4 flex justify-start md:justify-center" delay={0.35}>
+          <div className="order-first md:order-none md:col-span-4 flex justify-start md:justify-center">
             <HeroOrb className="hero-orb-hero" />
-          </Reveal>
+          </div>
         </div>
       </div>
       <div className="mx-auto max-w-[1320px] px-5 md:px-10 mt-8 md:mt-10">
@@ -103,8 +103,8 @@ function Who() {
     <section id="who" className="relative bg-[#0f2a1d] text-[#f4efe3] py-24 md:py-36 overflow-hidden">
       <div className="absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full border border-[#5be36f]/15 anim-drift" aria-hidden />
       <div className="absolute -right-20 -top-20 h-[320px] w-[320px] rounded-full border border-[#5be36f]/25 anim-drift" aria-hidden />
-      <div className="relative mx-auto max-w-[1320px] px-5 md:px-10 grid lg:grid-cols-12 gap-12">
-        <div className="lg:col-span-5 lg:sticky lg:top-28 self-start">
+      <div className="relative mx-auto max-w-[1320px] px-5 md:px-10 grid grid-cols-[minmax(0,1fr)] lg:grid-cols-12 gap-12">
+        <div className="min-w-0 lg:col-span-5 lg:sticky lg:top-28 self-start">
           <Reveal><Label light>01 / Who it is for</Label></Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-display mt-6 text-5xl md:text-7xl leading-[0.98] tracking-[-0.03em]">
@@ -128,17 +128,17 @@ function Who() {
             </p>
           </Reveal>
         </div>
-        <div className="lg:col-span-7 lg:pl-10">
+        <div className="min-w-0 lg:col-span-7 lg:pl-10">
           {WHO.map((w, i) => (
             <Reveal key={w.t} delay={i * 0.05}>
-              <div className="group border-t border-[#f4efe3]/15 py-8 md:py-10 grid grid-cols-[auto_1fr] gap-6 md:gap-10" data-testid={`card-who-${i}`}>
-                <span className="font-mono text-sm text-[#5be36f] pt-2">0{i + 1}</span>
-                <div>
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                    <h3 className="font-display text-3xl md:text-4xl transition-transform duration-500 group-hover:translate-x-2">{w.t}</h3>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#f4efe3]/45">{w.tag}</span>
+              <div className="group border-t border-[#f4efe3]/15 py-8 md:py-10 grid grid-cols-[2rem_minmax(0,1fr)] sm:grid-cols-[auto_minmax(0,1fr)] gap-x-3 sm:gap-6 md:gap-10" data-testid={`card-who-${i}`}>
+                <span className="font-mono text-sm leading-none text-[#5be36f] pt-[0.6rem] md:pt-3 tabular-nums">0{i + 1}</span>
+                <div className="min-w-0">
+                  <div className="flex min-w-0 flex-col sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between gap-x-6 gap-y-2">
+                    <h3 className="min-w-0 max-w-full break-words [overflow-wrap:anywhere] sm:[overflow-wrap:normal] font-display text-[clamp(1.6rem,7.4vw,1.875rem)] leading-[1.08] md:text-4xl transition-transform duration-500 group-hover:translate-x-2">{w.t}</h3>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#f4efe3]/45">{w.tag}</span>
                   </div>
-                  <p className="mt-4 font-display italic font-[340] text-xl md:text-[1.55rem] leading-[1.4] text-[#f4efe3]/85 max-w-lg">{w.d}</p>
+                  <p className="mt-4 font-display italic font-[340] text-[1.15rem] sm:text-xl md:text-[1.55rem] leading-[1.4] text-[#f4efe3]/85 max-w-lg break-words">{w.d}</p>
                 </div>
               </div>
             </Reveal>
